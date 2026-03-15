@@ -1,79 +1,236 @@
-K-Means Clustering Implementation
+# K-Means Clustering Implementation
 
-This project demonstrates the implementation of the K-Means Clustering
-algorithm using Python and Scikit-learn. The notebook explores how to
-determine the optimal number of clusters using the Elbow Method and
-Silhouette Score.
+## Project Overview
 
-Project Overview
+This project demonstrates the implementation of **K-Means Clustering**, an unsupervised machine learning algorithm used to group similar data points into clusters.
 
-Clustering is an unsupervised machine learning technique used to
-group similar data points together.
+Unlike supervised learning, clustering algorithms do not rely on labeled data. Instead, they identify patterns and group data points based on similarity. In this project, the K-Means algorithm is applied to a dataset to automatically detect and visualize clusters.
 
-In this project: - A dataset is loaded and visualized - K-Means
-clustering is applied - Within-Cluster Sum of Squares (WCSS) is
-calculated - The Elbow Method is used to find the optimal number of
-clusters - Silhouette Score is used to evaluate cluster quality -
-The final clustering model is trained using the optimal value of k
+The notebook includes steps such as **data loading, cluster visualization, determining the optimal number of clusters using the Elbow Method, and final clustering results**.
 
-Technologies Used
+---
 
--   Python
--   NumPy
--   Pandas
--   Matplotlib
--   Scikit-learn
+# Problem Statement
 
-Dataset
+In many real-world datasets, the number of groups or patterns within the data is unknown. The objective of this project is to:
 
-The dataset `cluster2.csv` contains two numerical features:
+* Identify natural groupings in the dataset
+* Determine the optimal number of clusters
+* Visualize clusters and cluster centroids
 
--   X coordinate
--   Y coordinate
+This project demonstrates how **K-Means clustering can automatically separate data points into meaningful groups**.
 
-These values represent data points that will be grouped into clusters.
+---
 
-Steps Performed
+# Dataset Description
 
-1.  Import necessary libraries
-2.  Load dataset using Pandas
-3.  Visualize the dataset
-4.  Apply K-Means clustering
-5.  Calculate WCSS values for k = 1 to 10
-6.  Plot the Elbow Method graph
-7.  Calculate Silhouette Scores
-8.  Determine the optimal number of clusters
-9.  Train the final K-Means model
-10. Identify the cluster centroids
+The dataset used in this project contains **two numerical variables** representing coordinates of data points.
 
-Elbow Method
+Each row represents a point in a two-dimensional space.
 
-The Elbow Method helps determine the best value of k by
-plotting:
+Example structure of the dataset:
 
-WCSS vs Number of Clusters
+| Feature | Description                    |
+| ------- | ------------------------------ |
+| x       | X-coordinate of the data point |
+| y       | Y-coordinate of the data point |
 
-The optimal number of clusters is identified where the curve forms an
-elbow point.
+These points are plotted in a 2D space and grouped into clusters based on their distance from cluster centers.
 
-Silhouette Score
+---
 
-The Silhouette Score measures how well each data point fits within
-its cluster.
+# Project Workflow
 
-Score range:
+## 1. Importing Required Libraries
 
--   +1 → well clustered
--   0 → overlapping clusters
--   -1 → incorrect clustering
+The following Python libraries are used:
 
-Final Result
+* **Pandas** – Data manipulation and analysis
+* **NumPy** – Numerical computations
+* **Matplotlib** – Data visualization
+* **Scikit-learn** – Machine learning algorithms
 
-Based on the evaluation methods, the optimal number of clusters was
-determined to be:
+---
 
-k = 3
+# Data Loading
 
-The final model was trained using this value, and the cluster
-centroids were calculated.
+The dataset is loaded from a CSV file and converted into a Pandas DataFrame.
+
+The dataset is then prepared for clustering by extracting the relevant numerical features.
+
+Example structure:
+
+```
+x   y
+---------
+12  34
+15  30
+22  28
+```
+
+---
+
+# Understanding K-Means Clustering
+
+K-Means clustering works by:
+
+1. Selecting **K initial centroids**
+2. Assigning each data point to the nearest centroid
+3. Recalculating the centroid of each cluster
+4. Repeating the process until the centroids stabilize
+
+The algorithm groups data points based on **distance similarity**.
+
+---
+
+# Determining the Optimal Number of Clusters
+
+One of the key challenges in K-Means clustering is choosing the correct number of clusters.
+
+To solve this, the **Elbow Method** is used.
+
+### Elbow Method
+
+The Elbow Method calculates the **Within-Cluster Sum of Squares (WCSS)** for different values of K.
+
+WCSS measures how compact the clusters are.
+
+Steps:
+
+1. Run K-Means for different values of K (for example, 1–10)
+2. Calculate WCSS for each K
+3. Plot the WCSS values
+4. Identify the "elbow point"
+
+The elbow point represents the optimal number of clusters where adding more clusters does not significantly reduce WCSS.
+
+---
+
+# Within Cluster Sum of Squares (WCSS)
+
+WCSS represents the sum of squared distances between each data point and its cluster centroid.
+
+Lower WCSS values indicate more compact clusters.
+
+By plotting WCSS values against different numbers of clusters, we can visually identify the best number of clusters.
+
+---
+
+# Model Training
+
+After identifying the optimal number of clusters using the Elbow Method, the final K-Means model is trained.
+
+Example configuration:
+
+```
+KMeans(n_clusters = 3)
+```
+
+The model assigns each data point to one of the clusters.
+
+---
+
+# Cluster Centroids
+
+Cluster centroids represent the **center of each cluster**.
+
+They are calculated as the average position of all data points within the cluster.
+
+In the visualization:
+
+* Data points are displayed using scatter plots
+* Centroids are highlighted using a distinct marker
+
+---
+
+# Visualization
+
+The notebook includes several visualizations:
+
+### Data Distribution
+
+Scatter plot showing the distribution of data points.
+
+### Elbow Method Plot
+
+Graph showing WCSS values for different numbers of clusters.
+
+### Final Clustering Result
+
+Scatter plot showing:
+
+* Data points grouped into clusters
+* Cluster centroids highlighted
+
+These visualizations help understand how the clustering algorithm separates the data.
+
+---
+
+# Technologies Used
+
+Programming Language:
+
+* Python
+
+Libraries:
+
+* Pandas
+* NumPy
+* Matplotlib
+* Scikit-learn
+
+Development Environment:
+
+* Jupyter Notebook
+
+---
+
+# Project Structure
+
+```
+KMeans-Clustering-Project
+│
+├── K - means Clustering.ipynb
+├── README.md
+├── dataset
+│   └── cluster2.csv
+```
+
+---
+
+# Applications of K-Means Clustering
+
+K-Means clustering is widely used in many real-world applications, including:
+
+* Customer segmentation
+* Market analysis
+* Image compression
+* Recommendation systems
+* Anomaly detection
+* Social network analysis
+
+---
+
+# Future Improvements
+
+Possible improvements to this project include:
+
+* Using larger real-world datasets
+* Implementing other clustering algorithms such as:
+
+  * DBSCAN
+  * Hierarchical Clustering
+  * Gaussian Mixture Models
+* Adding cluster evaluation metrics
+* Creating interactive visualizations using Plotly
+
+---
+
+# Conclusion
+
+This project demonstrates how K-Means clustering can be used to discover patterns in unlabeled data. By applying the Elbow Method, we can determine the optimal number of clusters and effectively group similar data points together.
+
+The project highlights the importance of **unsupervised learning techniques for exploratory data analysis and pattern discovery**.
+
+---
 
